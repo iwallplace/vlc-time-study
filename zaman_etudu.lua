@@ -1,6 +1,6 @@
 -- ==========================================================
 --  ZAMAN ETÜDÜ / TIME STUDY - VLC Lua Eklentisi
---  Schneider Electric Manisa - Zaman Analizi Aracı
+--  Ahmet Mersin - ahmetmersin.com
 -- ==========================================================
 --  Kullanım:
 --    1) Bu dosyayı kopyala:
@@ -16,7 +16,7 @@ function descriptor()
     return {
         title = "Zaman Etüdü / Time Study",
         version = "1.0",
-        author = "SE Manisa",
+        author = "Ahmet Mersin | ahmetmersin.com",
         shortdesc = "Video zaman analizi aracı",
         description = "Videodan zaman damgası yakala, panoya kopyala, CSV'ye aktar.",
         capabilities = {}
