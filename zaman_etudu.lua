@@ -38,8 +38,7 @@ local function format_time(microseconds)
     local h = math.floor(total_sec / 3600)
     local m = math.floor((total_sec % 3600) / 60)
     local s = math.floor(total_sec % 60)
-    local ms = math.floor((total_sec * 1000) % 1000)
-    return string.format("%02d:%02d:%02d.%03d", h, m, s, ms), total_sec
+    return string.format("%02d:%02d:%02d", h, m, s), total_sec
 end
 
 -- Windows panoya kopyala
