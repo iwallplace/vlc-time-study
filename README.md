@@ -97,8 +97,7 @@ VLC'yi kapatıp tekrar açın. **Görünüm** menüsünde **Zaman Etüdü / Time
 | ⏱ **ZAMANI KAYDET** | O anki video zamanını yakalar, panoya kopyalar |
 | ↩ **Geri Al** | Son kaydı siler |
 | **Not** alanı | Adıma açıklama ekler (opsiyonel) |
-| 📋 **Tümünü Kopyala** | Tüm kayıtları TAB-separated olarak panoya kopyalar |
-| 💾 **CSV Aktar** | Masaüstüne CSV dosyası kaydeder |
+| 💾 **CSV Aktar** | Masaüstüne CSV kaydeder ve otomatik Excel'de açar |
 | 🗑 **Temizle** | Tüm kayıtları siler |
 
 ### Excel'e Aktarma
@@ -106,11 +105,8 @@ VLC'yi kapatıp tekrar açın. **Görünüm** menüsünde **Zaman Etüdü / Time
 **Yöntem 1 — Tek tek:**
 Her "Zamanı Kaydet" basımında zaman otomatik panoya kopyalanır. Excel hücresine `Ctrl+V` yapıştır.
 
-**Yöntem 2 — Toplu:**
-"Tümünü Kopyala" butonuna bas → Excel'de `Ctrl+V` yap → Adım, Zaman, Saniye, Not sütunlarına otomatik oturur.
-
-**Yöntem 3 — CSV:**
-"CSV Aktar" → Masaüstünde `zaman_etudu_YYYYMMDD_HHMMSS.csv` oluşur → Excel ile aç.
+**Yöntem 2 — CSV:**
+"CSV Aktar" butonuna bas → Masaüstünde `zaman_etudu_YYYYMMDD_HHMMSS.csv` oluşur → **Otomatik Excel'de açılır.**
 
 ### Dosya Yolu (Windows)
 
@@ -173,15 +169,13 @@ This extension provides:
 | ⏱ **ZAMANI KAYDET** | Captures current timestamp, copies to clipboard |
 | ↩ **Geri Al** | Undo last entry |
 | **Not** field | Add a note/description to the step (optional) |
-| 📋 **Tümünü Kopyala** | Copy all records to clipboard (TAB-separated) |
-| 💾 **CSV Aktar** | Export all records as CSV to Desktop |
+| 💾 **CSV Aktar** | Export all records as CSV to Desktop and auto-open in Excel |
 | 🗑 **Temizle** | Clear all records |
 
 ### Export to Excel
 
 - **One by one:** Each capture auto-copies to clipboard → `Ctrl+V` in Excel
-- **Bulk:** Click "Tümünü Kopyala" → `Ctrl+V` in Excel → columns auto-align
-- **CSV:** Click "CSV Aktar" → opens as `zaman_etudu_YYYYMMDD_HHMMSS.csv` on Desktop
+- **CSV:** Click "CSV Aktar" → saves to Desktop and **auto-opens in Excel**
 
 ---
 

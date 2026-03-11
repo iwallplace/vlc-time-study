@@ -122,32 +122,6 @@ function copy_last()
     set_status("✓ Panoya kopyalandı: " .. last.time)
 end
 
--- Tüm listeyi TAB-separated olarak panoya kopyala (Excel'e toplu yapıştır)
-function copy_all_to_clipboard()
-    if #timestamps == 0 then
-        set_status("⚠ Henüz kayıt yok!")
-        return
-    end
-
-    -- Başlık satırı + veri satırları (TAB separated, Excel dostu)
-    local lines = {}
-    table.insert(lines, "Adım\tZaman\tSaniye\tNot")
-    for _, t in ipairs(timestamps) do
-        table.insert(lines, t.step .. "\t" .. t.time .. "\t"
-            .. string.format("%.3f", t.seconds) .. "\t" .. (t.note or ""))
-    end
-
-    -- Geçici dosyaya yaz, sonra clip'e aktar
-    local tmpfile = os.getenv("TEMP") .. "\\zaman_etudu_tmp.txt"
-    local f = io.open(tmpfile, "w")
-    if f then
-        f:write(table.concat(lines, "\n"))
-        f:close()
-        os.execute('clip < "' .. tmpfile .. '"')
-        set_status("✓ " .. #timestamps .. " kayıt panoya kopyalandı! Excel'de Ctrl+V yap.")
-    end
-end
-
 -- CSV dosyasına aktar
 function export_csv()
     if #timestamps == 0 then
@@ -178,7 +152,9 @@ function export_csv()
                 .. (t.note or "") .. "\n")
         end
         file:close()
-        set_status("✓ Kaydedildi: " .. filename .. " (Masaüstü)")
+        -- CSV'yi otomatik aç (Excel ile)
+        os.execute('start "" "' .. path .. '"')
+        set_status("✓ Kaydedildi ve açıldı: " .. filename)
     else
         set_status("⚠ Dosya yazılamadı!")
     end
@@ -227,8 +203,7 @@ function activate()
     list_widget = dlg:add_list(1, 3, 3, 1)
 
     -- Satır 4: Dışa aktarma butonları
-    dlg:add_button("📋 Tümünü Kopyala", copy_all_to_clipboard, 1, 4, 1, 1)
-    dlg:add_button("💾 CSV Aktar", export_csv, 2, 4, 1, 1)
+    dlg:add_button("💾 CSV Aktar", export_csv, 1, 4, 2, 1)
     dlg:add_button("🗑 Temizle", clear_all, 3, 4, 1, 1)
 
     -- Satır 5: Durum çubuğu
