@@ -40,6 +40,52 @@ Bu eklenti ile:
 
 3. **VLC'yi yeniden başlat**
 
+### Şirket Bilgisayarlarına Kurulum (Corporate PC)
+
+Şirket bilgisayarlarında admin yetkisi olmayabilir. Aşağıdaki adımları takip edin:
+
+**Adım 1 — Dosyayı indirin:**
+
+GitHub'dan `zaman_etudu.lua` dosyasını indirin. Yeşil **Code** butonuna değil, doğrudan `zaman_etudu.lua` dosyasına tıklayıp **Raw** → sağ tık → **Farklı Kaydet** yapın.
+
+**Adım 2 — VLC klasörünü bulun:**
+
+`Win+R` tuşlayıp şunu yapıştırın:
+```
+%APPDATA%\vlc
+```
+Genelde şu yola açılır:
+```
+C:\Users\SICIL_NO\AppData\Roaming\vlc\
+```
+> ⚠️ Şirket PC'lerinde kullanıcı adı sicil numaranız olabilir (örnek: `sesa826480`).
+
+**Adım 3 — Klasörleri oluşturun:**
+
+`vlc` klasörünün içinde `lua` klasörü yoksa elle oluşturun:
+1. Sağ tık → **Yeni** → **Klasör** → `lua`
+2. `lua` içine girin → **Yeni** → **Klasör** → `extensions`
+
+Sonuç:
+```
+C:\Users\SICIL_NO\AppData\Roaming\vlc\lua\extensions\
+```
+
+**Adım 4 — Dosyayı kopyalayın:**
+
+`zaman_etudu.lua` dosyasını `extensions` klasörüne yapıştırın:
+```
+C:\Users\SICIL_NO\AppData\Roaming\vlc\lua\extensions\zaman_etudu.lua
+```
+
+**Adım 5 — VLC'yi yeniden başlatın:**
+
+VLC'yi kapatıp tekrar açın. **Görünüm** menüsünde **Zaman Etüdü / Time Study** seçeneği görünecektir.
+
+> 💡 **Not:** `AppData` klasörü gizli olabilir. Dosya Gezgini'nde **Görünüm → Gizli öğeler** seçeneğini açın veya `Win+R` ile doğrudan `%APPDATA%\vlc` yazarak ulaşın.
+>
+> 💡 **Toplu dağıtım:** IT ekibiniz bu dosyayı GPO ile veya paylaşılan ağ klasöründen tüm kullanıcılara dağıtabilir. Hedef klasör: `%APPDATA%\vlc\lua\extensions\`
+
 ### Kullanım
 
 1. VLC'yi aç, videoyu oynat
