@@ -15,7 +15,7 @@
 function descriptor()
     return {
         title = "Zaman Etüdü / Time Study",
-        version = "1.0",
+        version = "1.1",
         author = "Ahmet Mersin | ahmetmersin.com",
         shortdesc = "Video zaman analizi aracı",
         description = "Videodan zaman damgası yakala, panoya kopyala, CSV'ye aktar.",
@@ -133,22 +133,24 @@ function export_csv()
     local filename = "zaman_etudu_" .. os.date("%Y%m%d_%H%M%S") .. ".csv"
     local path = desktop .. filename
 
-    local file = io.open(path, "w")
+    local file = io.open(path, "wb")
     if not file then
         -- Masaüstü olmazsa VLC dizinine yaz
         path = vlc.config.userdatadir() .. "\\" .. filename
-        file = io.open(path, "w")
+        file = io.open(path, "wb")
     end
 
     if file then
-        -- BOM + CSV header (Türkçe Excel için UTF-8 BOM ve noktalı virgül)
-        file:write("\xEF\xBB\xBF")
-        file:write("Adım;Zaman;Saniye;Not\n")
+        -- UTF-8 BOM (Türkçe Excel'in dosyayı UTF-8 olarak açması için).
+        -- ÖNEMLİ: VLC'nin gömülü Lua'sı 5.1'dir ve Lua 5.1'de "\xNN" escape
+        -- yoktur — string.char() kullanmak ZORUNLU, aksi halde literal
+        -- "xEFxBBxBF" yazılır ve Excel cp1254 sanıp tüm karakterleri bozar.
+        file:write(string.char(0xEF, 0xBB, 0xBF))
+        file:write("Adım;Zaman;Not\r\n")
         for _, t in ipairs(timestamps) do
             file:write(t.step .. ";"
                 .. t.time .. ";"
-                .. string.format("%.3f", t.seconds) .. ";"
-                .. (t.note or "") .. "\n")
+                .. (t.note or "") .. "\r\n")
         end
         file:close()
         -- CSV'yi otomatik aç (Excel ile)
